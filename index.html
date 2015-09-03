@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>P-Script interpreter</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<textarea id="txt" style="" spellcheck="false">var helloWorld = true;
+if(helloWorld){
+	var foo = cos(pi) + 7 * 2^(1 + 2);
+	foo -= 2;
+	var bar = foo / choose(1,2,3);
+	showMessage(bar > 0 ? "foo > 0" : ":o");
+	setTitle("Hello World!");
+
+	var question = getString("Would you like to save a file? (Y / N)","Y");
+	if(question == "Y"){
+		saveFile("hello_world.txt","It works!");
+	}
+}
+else{
+	showMessage(":(");
+}
+</textarea>
+	<div id="solution"></div>
+	<input type="file" id="fileUploadHelper"/>
+	<a id="downloadHelper"></a>
+
+	<!-- Prototypes -->
+	<script src="token.js"></script>
+	<script src="number.js"></script>
+
+	<!-- Lookup -->
+	<script src="operators.js"></script>
+	<script src="functions.js"></script>
+	<script src="fileIO.js"></script>
+
+	<!-- Execution -->
+	<script src="lex.js"></script>
+	<script src="parser.js"></script>
+	<script src="execute.js"></script>
+	<button id="exe">exe</button>
+	<script>
+		txt.focus();
+		exe.addEventListener("click",function(){
+			execute(parser(lex(txt.value)));
+		});
+	</script>
+</body>
+</html>
